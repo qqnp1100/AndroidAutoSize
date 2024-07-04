@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.internal.CustomAdapt;
+import me.jessyan.autosize.internal.EnableAdapt;
 
 /**
  * ================================================

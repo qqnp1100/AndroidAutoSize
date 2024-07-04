@@ -23,6 +23,7 @@ import java.util.Locale;
 import me.jessyan.autosize.external.ExternalAdaptInfo;
 import me.jessyan.autosize.internal.CancelAdapt;
 import me.jessyan.autosize.internal.CustomAdapt;
+import me.jessyan.autosize.internal.EnableAdapt;
 import me.jessyan.autosize.utils.AutoSizeLog;
 
 /**
@@ -57,10 +58,18 @@ public class DefaultAutoAdaptStrategy implements AutoAdaptStrategy {
             }
         }
 
-        //如果 target 实现 CancelAdapt 接口表示放弃适配, 所有的适配效果都将失效
-        if (target instanceof CancelAdapt) {
-            AutoSizeLog.w(String.format(Locale.ENGLISH, "%s canceled the adaptation!", target.getClass().getName()));
-            AutoSize.cancelAdapt(activity);
+        if (AutoSizeConfig.getInstance().isEnableAll()) {
+            //如果 target 实现 CancelAdapt 接口表示放弃适配, 所有的适配效果都将失效
+            if (target instanceof CancelAdapt) {
+                AutoSizeLog.w(String.format(Locale.ENGLISH, "%s canceled the adaptation!", target.getClass().getName()));
+                AutoSize.cancelAdapt(activity);
+                return;
+            }
+        } else {
+            if (target instanceof EnableAdapt) {
+                AutoSize.autoConvertDensityOfGlobal(activity);
+                return;
+            }
             return;
         }
 

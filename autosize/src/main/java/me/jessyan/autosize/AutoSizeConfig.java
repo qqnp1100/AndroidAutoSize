@@ -160,6 +160,13 @@ public final class AutoSizeConfig {
      */
     private onAdaptListener mOnAdaptListener;
 
+    /**
+     * 是否全部开启
+     * 默认开启，开启后使用CancelAdapt取消适配
+     * 关闭后使用EnableAdapt开启适配
+     */
+    private boolean enableAll = true;
+
     static {
         DEPENDENCY_ANDROIDX = findClassByClassName("androidx.fragment.app.FragmentActivity");
         DEPENDENCY_SUPPORT = findClassByClassName("android.support.v4.app.FragmentActivity");
@@ -673,6 +680,15 @@ public final class AutoSizeConfig {
         Preconditions.checkArgument(statusBarHeight > 0, "statusBarHeight must be > 0");
         mStatusBarHeight = statusBarHeight;
         return this;
+    }
+
+    public AutoSizeConfig setEnableAll(boolean enableAll) {
+        this.enableAll = enableAll;
+        return this;
+    }
+
+    public boolean isEnableAll() {
+        return enableAll;
     }
 
     /**
