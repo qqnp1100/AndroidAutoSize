@@ -20,12 +20,11 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import cat.ereza.customactivityoncrash.activity.DefaultErrorActivity;
-import cat.ereza.customactivityoncrash.config.CaocConfig;
+import androidx.appcompat.app.AppCompatActivity;
+
 import me.jessyan.autosize.AutoSizeConfig;
 import me.jessyan.autosize.internal.CustomAdapt;
 
@@ -95,10 +94,5 @@ public class MainActivity extends AppCompatActivity {
     public void goThirdLibraryActivity(View view) {
         //这里就是随便找个三方库的 Activity, 测试下适配三方库页面的功能是否可用
         //以下代码就是为了启动这个三方库的 Activity, 不必在意
-        Intent intent = new Intent(getApplicationContext(), DefaultErrorActivity.class);
-        Bundle extras = new Bundle();
-        extras.putSerializable("cat.ereza.customactivityoncrash.EXTRA_CONFIG", CaocConfig.Builder.create().get());
-        intent.putExtras(extras);
-        startActivity(intent);
     }
 }
